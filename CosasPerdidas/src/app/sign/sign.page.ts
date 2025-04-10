@@ -7,43 +7,42 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-forgot',
-  templateUrl: './forgot.page.html',
-  styleUrls: ['./forgot.page.scss'],
+  selector: 'app-sign',
+  templateUrl: './sign.page.html',
+  styleUrls: ['./sign.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton],
 })
-export class ForgotPage implements OnInit {
+export class SignPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
     private router: Router,
     private authService: AuthService,
+
   ) { }
-
-
   ngOnInit() {
   }
   emailInput: string = '';
-
+  passwordInput: string = '';
   async onSubmit() {
 
 
 
 
     try {
-      await this.authService.resetPassword(this.emailInput)
+      await this.authService.logine(this.emailInput, this.passwordInput);
       const alert = await this.alertController.create({
-        header: 'Contraseña enviada',
-        message: 'Tu contraseña se envio',
+        header: 'Sesion iniciada',
+        message: 'Tu sesion a sido enviado iniciada',
         buttons: ['OK'],
       });
       await alert.present();
-      this.router.navigateByUrl("sign");
+      this.router.navigateByUrl("/series");
     } catch (error) {
       const alert = await this.alertController.create({
         header: 'ERROR',
-        message: 'Tu sesion no se pudo encontrar ',
+        message: 'Tu sesion no se pudo iniciar ',
         buttons: ['OK'],
       });
       await alert.present();
@@ -56,6 +55,9 @@ export class ForgotPage implements OnInit {
     return emailPattern.test(email);
   }
   onSignUp() {
-    this.router.navigateByUrl("sign");
+    this.router.navigateByUrl("home");
+  }
+  onForgot() {
+    this.router.navigateByUrl("forgot");
   }
 }
