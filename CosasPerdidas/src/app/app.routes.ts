@@ -17,7 +17,15 @@ export const routes: Routes = [
   {
     path: 'logout',
     loadComponent: () => import('./logout/logout.page').then(m => m.LogoutPage)
+  },  {
+    path: 'crear',
+    loadComponent: () => import('./crear/crear.page').then( m => m.CrearPage)
   },
+  {
+    path: 'forgot',
+    loadComponent: () => import('./forgot/forgot.page').then( m => m.ForgotPage)
+  },
+
 
 
 ];
