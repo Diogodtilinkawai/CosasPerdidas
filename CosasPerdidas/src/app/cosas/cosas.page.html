@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Reviews de series</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1 style="text-align: center; font-size: 60px;">Agrega tu review</h1>
+
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+    <input id="Nombre" name="Nombre" [(ngModel)]="TituloInput"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Nombre de la serie" required #Nombre="ngModel" />
+    <input id="Descripcion" name="Descripcion" [(ngModel)]="autorInput"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Agrega el autor" required #Descripcion="ngModel" />
+    <input id="date" name="date" [(ngModel)]="opinionInput"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Agrega tu opinion" required #date="ngModel" />
+    <input type="number" id="Descripcion" name="Descripcion" [(ngModel)]="calificacionInput"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Agrega tu calificacion" required #Descripcion="ngModel" />
+    <button type="submit"
+      class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+      [disabled]="registerForm.invalid">
+      Agregar review
+    </button>
+  </form>
+  <button (click)="onSignUp()" type="button"
+    class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+    Cerrar sesion
+  </button>
+  <div>
+    <b>
+      <h1 style="text-align: center;"
+        class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"> <span
+          class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Peliculas</span></h1>
+    </b>
+    <ion-grid>
+      <ion-row style="text-align: center;">
+        <ion-col> <a href="#" class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Nombre
+            de la serie</a></ion-col>
+        <ion-col> <a href="#"
+            class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">Autor</a></ion-col>
+        <ion-col> <a href="#"
+            class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Opinion</a></ion-col>
+        <ion-col> <a href="#"
+            class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Calificacion</a></ion-col>
+        <ion-col><a href="#"
+            class="font-semibold text-gray-900 underline dark:text-white decoration-green-500">Borrar</a> </ion-col>
+        <ion-col><a href="#"
+            class="font-semibold text-gray-900 underline dark:text-white decoration-green-700">Editar</a> </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of tasks$ | async" style="text-align: center;">
+        <ion-col> {{ item.Titulo }}</ion-col>
+        <ion-col> {{ item.autor }}</ion-col>
+        <ion-col> {{ item.opinion}}</ion-col>
+        <ion-col [ngClass]="getCalificacionClass(this.stringToNumber(item.calificacion))"><b> {{
+            item.calificacion}}</b></ion-col>
+        <ion-col><button (click)="borrar(item.id!)"> Eliminar</button></ion-col>
+        <ion-col><button (click)="Editar(item.id!, item)"> Editar</button></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
