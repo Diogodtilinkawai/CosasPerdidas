@@ -25,7 +25,6 @@ export class HomePage {
 
 
 
-
     try {
       await this.authService.register(this.emailInput, this.passwordInput);
       const alert = await this.alertController.create({

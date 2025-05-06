@@ -26,27 +26,28 @@ export class CosasPage implements OnInit {
 
   ngOnInit() {
     this.tasks$ = this.reviewService.getTasks();
-
+    console.log(this.tasks$);
   }
-  TituloInput: string = "";
-  autorInput: string = "";
-  opinionInput: string = "";
-  calificacionInput: string = "";
+  PrendaInput: string = "";
+  ColorInput: string = "";
+  TallaInput: string = "";
+  PersonaInput: string = "";
+  items:any=[];
   tasks$: Observable<Task[]> = new Observable<Task[]>();
 
   async onSubmit() {
-    if (this.TituloInput && this.autorInput && this.opinionInput && this.calificacionInput) {
+    if (this.PrendaInput && this.TallaInput && this.ColorInput && this.PersonaInput) {
       const newTask: Task = {
-        Titulo: this.TituloInput,
-        autor: this.autorInput,
-        opinion: this.opinionInput,
-        calificacion: this.calificacionInput
+        Prenda: this.PrendaInput,
+        Color: this.TallaInput,
+        Talla: this.ColorInput,
+        Persona: this.PersonaInput
       }
       await this.reviewService.addTask(newTask);
-      this.TituloInput = "";
-      this.autorInput = "";
-      this.opinionInput = "";
-      this.calificacionInput = "";
+      this.PrendaInput = "";
+      this.TallaInput = "";
+      this.ColorInput = "";
+      this.PersonaInput = "";
       const alert = await this.alertController.create({
         header: 'Review agregada',
         message: 'Tu review se agrego',
@@ -77,28 +78,28 @@ export class CosasPage implements OnInit {
       header: 'Editar Review',
       inputs: [
         {
-          name: 'Titulo',
+          name: 'Prenda',
           type: 'text',
-          placeholder: 'Titulo',
-          value: task.Titulo
+          placeholder: 'Prenda',
+          value: task.Prenda
         },
         {
-          name: 'autor',
+          name: 'Color',
           type: 'text',
-          placeholder: 'Autor',
-          value: task.autor
+          placeholder: 'Color',
+          value: task.Color
         },
         {
-          name: 'opinion',
+          name: 'Talla',
           type: 'text',
-          placeholder: 'Opinion',
-          value: task.opinion
+          placeholder: 'Talla',
+          value: task.Talla
         },
         {
-          name: 'calificacion',
-          type: 'number',
-          placeholder: 'Calificacion',
-          value: task.calificacion
+          name: 'Persona',
+          type: 'text',
+          placeholder: 'Quien lo encontro',
+          value: task.Persona
         }
       ],
       buttons: [
@@ -110,12 +111,12 @@ export class CosasPage implements OnInit {
         {
           text: 'Guardar',
           handler: (data) => {
-            if (data.Titulo && data.autor && data.opinion && data.calificacion) {
+            if (data.Prenda && data.Color && data.Talla && data.Persona) {
               const updatedTask: Partial<Task> = {
-                Titulo: data.Titulo,
-                autor: data.autor,
-                opinion: data.opinion,
-                calificacion: data.calificacion
+                Prenda: data.Prenda,
+                Color: data.Color,
+                Talla: data.Talla,
+                Persona: data.Persona
               };
               this.reviewService.updateTask(id, updatedTask);
               this.showAlert('Review actualizada', 'La review ha sido actualizada correctamente.');
@@ -142,15 +143,6 @@ export class CosasPage implements OnInit {
   onSignUp() {
     this.authService.logout();
     this.router.navigateByUrl("sign");
-  }
-  getCalificacionClass(calificacion: number): string {
-    if (calificacion < 3) {
-      return 'calificacion-baja';
-    } else if (calificacion >= 3 && calificacion < 7) {
-      return 'calificacion-media';
-    } else {
-      return 'calificacion-alta';
-    }
   }
   public stringToNumber(value: string): number {
     return parseFloat(value);
