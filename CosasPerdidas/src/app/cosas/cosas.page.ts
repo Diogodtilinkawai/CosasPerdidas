@@ -164,16 +164,31 @@ export class CosasPage implements OnInit {
     console.log('Buscando por talla:', this.searchTalla);
     
     this.tasks$.subscribe(tasks => {
-      this.filteredTasks = tasks.filter(task => {
-        const matchColor = !this.searchColor.trim() || 
-          task.Talla.toLowerCase().includes(this.searchColor.toLowerCase());
-        const matchTalla = !this.searchTalla.trim() || 
-          task.Color.toLowerCase().includes(this.searchTalla.toLowerCase());
-        
-        return matchColor && matchTalla;
-      });
+      // Si hay texto en el campo de color
+      if (this.searchColor.trim() && !this.searchTalla.trim()) {
+        this.filteredTasks = tasks.filter(task =>
+          task.Talla.toLowerCase().includes(this.searchColor.toLowerCase())
+        );
+      } 
+      // Si hay texto en el campo de talla
+      else if (!this.searchColor.trim() && this.searchTalla.trim()) {
+        this.filteredTasks = tasks.filter(task =>
+          task.Color.toLowerCase().includes(this.searchTalla.toLowerCase())
+        );
+      }
+      // Si hay texto en ambos campos
+      else if (this.searchColor.trim() && this.searchTalla.trim()) {
+        this.filteredTasks = tasks.filter(task =>
+          task.Talla.toLowerCase().includes(this.searchColor.toLowerCase()) &&
+          task.Color.toLowerCase().includes(this.searchTalla.toLowerCase())
+        );
+      }
+      // Si ambos campos están vacíos
+      else {
+        this.filteredTasks = tasks;
+      }
       
-      console.log('Filtered Tasks:', this.filteredTasks);
+      console.log('Tareas filtradas:', this.filteredTasks);
     });
   }
 }
