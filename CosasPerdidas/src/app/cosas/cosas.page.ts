@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { BaseService, Task } from '../base.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cosas',
@@ -27,13 +28,24 @@ export class CosasPage implements OnInit {
   ngOnInit() {
     this.tasks$ = this.reviewService.getTasks();
     console.log(this.tasks$);
+    this.filteredTasks$ = this.tasks$.pipe(
+      map(tasks =>
+        tasks.filter(task =>
+          task.Color.toLowerCase().includes(this.searchColor.toLowerCase())
+        )
+      )
+    );
   }
   PrendaInput: string = "";
   ColorInput: string = "";
   TallaInput: string = "";
   PersonaInput: string = "";
+  searchTalla: string = '';
   items:any=[];
   tasks$: Observable<Task[]> = new Observable<Task[]>();
+  filteredTasks$: Observable<Task[]> = new Observable<Task[]>();
+  searchColor: string = '';
+  filteredTasks: Task[] = []
 
   async onSubmit() {
     if (this.PrendaInput && this.TallaInput && this.ColorInput && this.PersonaInput) {
@@ -147,4 +159,23 @@ export class CosasPage implements OnInit {
   public stringToNumber(value: string): number {
     return parseFloat(value);
   }
-} 
+  buscarPorFiltros() {
+    console.log('Buscando por color:', this.searchColor);
+    console.log('Buscando por talla:', this.searchTalla);
+    
+    this.tasks$.subscribe(tasks => {
+      this.filteredTasks = tasks.filter(task => {
+        const matchColor = !this.searchColor.trim() || 
+          task.Talla.toLowerCase().includes(this.searchColor.toLowerCase());
+        const matchTalla = !this.searchTalla.trim() || 
+          task.Color.toLowerCase().includes(this.searchTalla.toLowerCase());
+        
+        return matchColor && matchTalla;
+      });
+      
+      console.log('Filtered Tasks:', this.filteredTasks);
+    });
+  }
+}
+
+ 
