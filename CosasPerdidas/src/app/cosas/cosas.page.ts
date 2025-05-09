@@ -28,13 +28,9 @@ export class CosasPage implements OnInit {
   ngOnInit() {
     this.tasks$ = this.reviewService.getTasks();
     console.log(this.tasks$);
-    this.filteredTasks$ = this.tasks$.pipe(
-      map(tasks =>
-        tasks.filter(task =>
-          task.Color.toLowerCase().includes(this.searchColor.toLowerCase())
-        )
-      )
-    );
+    this.eliminatedTasks$ = this.reviewService.getEliminatedTasks();
+    console.log(this.eliminatedTasks$);
+ 
   }
   PrendaInput: string = "";
   ColorInput: string = "";
@@ -43,9 +39,10 @@ export class CosasPage implements OnInit {
   searchTalla: string = '';
   items:any=[];
   tasks$: Observable<Task[]> = new Observable<Task[]>();
-  filteredTasks$: Observable<Task[]> = new Observable<Task[]>();
   searchColor: string = '';
   filteredTasks: Task[] = []
+  removedTasks: Task[] = [];
+  eliminatedTasks$: Observable<Task[]> = new Observable<Task[]>();
 
   async onSubmit() {
     if (this.PrendaInput && this.TallaInput && this.ColorInput && this.PersonaInput) {
@@ -77,12 +74,16 @@ export class CosasPage implements OnInit {
   }
 
   borrar(id: string) {
+    this.tasks$.subscribe(tasks => {
+      const taskToRemove = tasks.find(task => task.id === id);
+       this.reviewService.addEliminatedTask(taskToRemove!);
     this.reviewService.deleteTask(id);
     const alert = this.alertController.create({
       header: 'review fue borrada',
       message: 'Tu review se borro',
       buttons: ['OK'],
     });
+  });
   }
 
   async Editar(id: string, task: Task) {
