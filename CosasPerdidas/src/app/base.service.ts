@@ -7,6 +7,7 @@ export interface Task {
   Color  : string;
   Talla  : string;
   Persona : string;
+  Imagen?: string;
 }
 
 

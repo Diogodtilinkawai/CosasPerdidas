@@ -6,7 +6,10 @@
 
 <ion-content [fullscreen]="true">
   <h1 style="text-align: center; font-size: 60px;">Agrega un objeto perdido</h1>
-
+  <a href="https://drive.google.com/drive/u/2/folders/1Gtps4YkGiEX6wcfmIVbssFd-nFf9z0pi" target="_blank" style="color: #0ea5e9; text-decoration: underline; font-weight: bold;">
+    Drive de imagenes
+  </a>
+  <br>
   <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
     <input id="Nombre" name="Nombre" [(ngModel)]="PrendaInput"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -20,12 +23,16 @@
     <input id="Descripcion" name="Descripcion" [(ngModel)]="PersonaInput"
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="Nombre de quien lo encontro" required #Descripcion="ngModel" />
-    <button type="submit" 
+    <input id="Imagen" name="Imagen" [(ngModel)]="ImagenInput"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Link de la imagen" required #Imagen="ngModel" />
+      <button type="submit" 
       class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
       [disabled]="registerForm.invalid">
       Agregar objeto
     </button>
   </form>
+
   <input [(ngModel)]="searchColor" placeholder="Buscar por color" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
   <br>
   <input [(ngModel)]="searchTalla" 
@@ -73,6 +80,7 @@
             class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
         <ion-col> <a 
             class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
+        <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
         <ion-col><a 
             class="font-semibold text-gray-900 underline dark:text-white decoration-green-500">Borrar</a> </ion-col>
         <ion-col><a 
@@ -83,6 +91,9 @@
         <ion-col> {{ item.Color }}</ion-col>
         <ion-col> {{ item.Talla }}</ion-col>
         <ion-col> {{ item.Persona }}</ion-col>
+        <ion-col>
+          <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Error" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+        </ion-col>
         <ion-col><button (click)="borrar(item.id!)"> Eliminar</button></ion-col>
         <ion-col><button (click)="Editar(item.id!, item)"> Editar</button></ion-col>
       </ion-row>
@@ -94,13 +105,16 @@
             <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">Talla</a></ion-col>
             <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
             <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
+            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
           </ion-row>
           <ion-row *ngFor="let item of eliminatedTasks$ | async; let indice = index" style="text-align: center;">
             <ion-col> {{ item.Prenda }}</ion-col>
             <ion-col> {{ item.Color }}</ion-col>
             <ion-col> {{ item.Talla }}</ion-col>
             <ion-col> {{ item.Persona }}</ion-col>
-    
+            <ion-col>
+              <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+            </ion-col>
           </ion-row>
         </ion-grid>
 

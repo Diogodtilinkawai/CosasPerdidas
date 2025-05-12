@@ -37,6 +37,7 @@ export class CosasPage implements OnInit {
   TallaInput: string = "";
   PersonaInput: string = "";
   searchTalla: string = '';
+  ImagenInput: string = "";
   items:any=[];
   tasks$: Observable<Task[]> = new Observable<Task[]>();
   searchColor: string = '';
@@ -50,13 +51,15 @@ export class CosasPage implements OnInit {
         Prenda: this.PrendaInput,
         Color: this.TallaInput,
         Talla: this.ColorInput,
-        Persona: this.PersonaInput
+        Persona: this.PersonaInput,
+        Imagen: this.ImagenInput
       }
       await this.reviewService.addTask(newTask);
       this.PrendaInput = "";
       this.TallaInput = "";
       this.ColorInput = "";
       this.PersonaInput = "";
+      this.ImagenInput = "";
       const alert = await this.alertController.create({
         header: 'Review agregada',
         message: 'Tu review se agrego',
@@ -113,6 +116,12 @@ export class CosasPage implements OnInit {
           type: 'text',
           placeholder: 'Quien lo encontro',
           value: task.Persona
+        },
+        {
+          name: 'Imagen',
+          type: 'text',
+          placeholder: 'Link de la imagen',
+          value: task.Imagen || ''
         }
       ],
       buttons: [
@@ -129,7 +138,8 @@ export class CosasPage implements OnInit {
                 Prenda: data.Prenda,
                 Color: data.Color,
                 Talla: data.Talla,
-                Persona: data.Persona
+                Persona: data.Persona,
+                Imagen: data.Imagen
               };
               this.reviewService.updateTask(id, updatedTask);
               this.showAlert('Review actualizada', 'La review ha sido actualizada correctamente.');
