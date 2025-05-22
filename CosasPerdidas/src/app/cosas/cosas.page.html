@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 style="text-align: center; font-size: 60px;">Agrega un objeto perdido</h1>
+  <h1 style="text-align: center; font-size: 60px;"> <span   class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400"><b>Agrega un objeto perdido</b></span></h1>
   <a href="https://drive.google.com/drive/u/2/folders/1Gtps4YkGiEX6wcfmIVbssFd-nFf9z0pi" target="_blank" style="color: #0ea5e9; text-decoration: underline; font-weight: bold;">
     Drive de imagenes
   </a>
@@ -44,16 +44,12 @@
       Buscar
     </button>
     <br>
-    <button (click)="onSignUp()" type="button"
-    class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-    Cerrar sesion
-  </button>
-  <div>
-    <b>
-      <h1 style="text-align: center;"
+    <div>
+      <b>
+        <h1 style="text-align: center;"
         class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"> <span
         class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Cosas Perdidas</span></h1>
-        <h1 >Busquedas filtradas</h1>
+        <h1 class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Busquedas filtradas</h1>
         <ion-grid>
           <ion-row style="text-align: center;">
             <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Prenda</a></ion-col>
@@ -66,58 +62,62 @@
             <ion-col> {{ item.Color }}</ion-col>
             <ion-col> {{ item.Talla }}</ion-col>
             <ion-col> {{ item.Persona }}</ion-col>
-    
+            
           </ion-row>
         </ion-grid>
-    </b>
-    <h1>Todos los objetos</h1>
-    <ion-grid>
-      <ion-row style="text-align: center;">
-        <ion-col> <a  class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Prenda</a></ion-col>
-        <ion-col> <a 
+      </b>
+      <h1>Todos los objetos</h1>
+      <ion-grid>
+        <ion-row style="text-align: center;">
+          <ion-col> <a  class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Prenda</a></ion-col>
+          <ion-col> <a 
             class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">Talla</a></ion-col>
-        <ion-col> <a 
-            class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
-        <ion-col> <a 
-            class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
-        <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
-        <ion-col><a 
-            class="font-semibold text-gray-900 underline dark:text-white decoration-green-500">Borrar</a> </ion-col>
-        <ion-col><a 
-            class="font-semibold text-gray-900 underline dark:text-white decoration-green-700">Editar</a> </ion-col>
-      </ion-row>
-       <ion-row *ngFor="let item of tasks$ | async; let indice = index" style="text-align: center;">
-        <ion-col> {{ item.Prenda }}</ion-col>
-        <ion-col> {{ item.Color }}</ion-col>
-        <ion-col> {{ item.Talla }}</ion-col>
-        <ion-col> {{ item.Persona }}</ion-col>
-        <ion-col>
-          <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Error" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
-        </ion-col>
-        <ion-col><button (click)="borrar(item.id!)"> Eliminar</button></ion-col>
-        <ion-col><button (click)="Editar(item.id!, item)"> Editar</button></ion-col>
-      </ion-row>
-    </ion-grid>
-    <h1 >Eliminados</h1>
-        <ion-grid>
-          <ion-row style="text-align: center;">
-            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Prenda</a></ion-col>
-            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">Talla</a></ion-col>
-            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
-            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
-            <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
-          </ion-row>
-          <ion-row *ngFor="let item of eliminatedTasks$ | async; let indice = index" style="text-align: center;">
-            <ion-col> {{ item.Prenda }}</ion-col>
-            <ion-col> {{ item.Color }}</ion-col>
-            <ion-col> {{ item.Talla }}</ion-col>
-            <ion-col> {{ item.Persona }}</ion-col>
-            <ion-col>
-              <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-
-
-  </div>
-</ion-content>
+            <ion-col> <a 
+              class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
+              <ion-col> <a 
+                class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
+                <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
+                <ion-col><a 
+                  class="font-semibold text-gray-900 underline dark:text-white decoration-green-500">Borrar</a> </ion-col>
+                  <ion-col><a 
+                    class="font-semibold text-gray-900 underline dark:text-white decoration-green-700">Editar</a> </ion-col>
+                  </ion-row>
+                  <ion-row *ngFor="let item of tasks$ | async; let indice = index" style="text-align: center;">
+                    <ion-col> {{ item.Prenda }}</ion-col>
+                    <ion-col> {{ item.Color }}</ion-col>
+                    <ion-col> {{ item.Talla }}</ion-col>
+                    <ion-col> {{ item.Persona }}</ion-col>
+                    <ion-col>
+                      <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Error" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+                    </ion-col>
+                    <ion-col><button (click)="borrar(item.id!)"> Eliminar</button></ion-col>
+                    <ion-col><button (click)="Editar(item.id!, item)"> Editar</button></ion-col>
+                  </ion-row>
+                </ion-grid>
+                <h1 >Eliminados</h1>
+                <ion-grid>
+                  <ion-row style="text-align: center;">
+                    <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-700">Prenda</a></ion-col>
+                    <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-indigo-500">Talla</a></ion-col>
+                    <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-700">Color</a></ion-col>
+                    <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-sky-500">Persona</a></ion-col>
+                    <ion-col> <a class="font-semibold text-gray-900 underline dark:text-white decoration-pink-500">Imagen</a></ion-col>
+                  </ion-row>
+                  <ion-row *ngFor="let item of eliminatedTasks$ | async; let indice = index" style="text-align: center;">
+                    <ion-col> {{ item.Prenda }}</ion-col>
+                    <ion-col> {{ item.Color }}</ion-col>
+                    <ion-col> {{ item.Talla }}</ion-col>
+                    <ion-col> {{ item.Persona }}</ion-col>
+                    <ion-col>
+                      <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+                
+                <button (click)="onSignUp()" type="button"
+                class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                Cerrar sesion
+              </button>
+              </div>
+            </ion-content>
