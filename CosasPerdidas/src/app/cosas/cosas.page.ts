@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem,IonCard,IonCardContent,IonLabel } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './cosas.page.html',
   styleUrls: ['./cosas.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonItem]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonGrid, IonRow, IonCol, IonItem, IonCard,IonCardContent,IonLabel]
 })
 export class CosasPage implements OnInit {
   constructor(
