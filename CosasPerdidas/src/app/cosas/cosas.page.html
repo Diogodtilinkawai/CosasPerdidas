@@ -25,32 +25,27 @@
   <ion-card style="margin-bottom: 2rem;">
     <ion-card-content>
       <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-        <ion-item>
-          <ion-label position="floating">Objeto</ion-label>
-          <ion-input id="Nombre" name="Nombre" [(ngModel)]="PrendaInput" required #Nombre="ngModel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Color</ion-label>
-          <ion-input id="Color" name="Color" [(ngModel)]="ColorInput" required #Color="ngModel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Talla</ion-label>
-          <ion-input id="Talla" name="Talla" [(ngModel)]="TallaInput" required #Talla="ngModel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Nombre de quien lo encontró</ion-label>
-          <ion-input id="Persona" name="Persona" [(ngModel)]="PersonaInput" required #Persona="ngModel"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Link de la imagen</ion-label>
-          <ion-input id="Imagen" name="Imagen" [(ngModel)]="ImagenInput" required #Imagen="ngModel"></ion-input>
-        </ion-item>
+        <input id="Nombre" name="Nombre" [(ngModel)]="PrendaInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Objeto" required #Nombre="ngModel" />
+        <input id="Descripcion" name="Descripcion" [(ngModel)]="ColorInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Color" required #Descripcion="ngModel" />
+        <input id="date" name="date" [(ngModel)]="TallaInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Talla " required #date="ngModel" />
+        <input id="Descripcion" name="Descripcion" [(ngModel)]="PersonaInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Nombre de quien lo encontro" required #Descripcion="ngModel" />
+        <input id="Imagen" name="Imagen" [(ngModel)]="ImagenInput"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Link de la imagen" required #Imagen="ngModel" />
+        <button type="submit"
+          class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          [disabled]="registerForm.invalid">
+          Agregar objeto
+        </button>
         <div style="text-align: center; margin-top: 1rem;">
-          <button type="submit"
-            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            [disabled]="registerForm.invalid">
-            Agregar objeto
-          </button>
         </div>
       </form>
     </ion-card-content>
@@ -119,7 +114,8 @@
           <ion-col>{{ item.Talla }}</ion-col>
           <ion-col>{{ item.Persona }}</ion-col>
           <ion-col>
-            <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+            <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen"
+              style="max-width: 80px; max-height: 80px; border-radius: 8px;">
           </ion-col>
           <ion-col>
             <button (click)="borrar(item.id!)" class="text-red-600 underline">Eliminar</button>
@@ -150,7 +146,8 @@
           <ion-col>{{ item.Talla }}</ion-col>
           <ion-col>{{ item.Persona }}</ion-col>
           <ion-col>
-            <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen" style="max-width: 80px; max-height: 80px; border-radius: 8px;">
+            <img *ngIf="item.Imagen" [src]="item.Imagen" alt="Imagen"
+              style="max-width: 80px; max-height: 80px; border-radius: 8px;">
           </ion-col>
         </ion-row>
       </ion-grid>
