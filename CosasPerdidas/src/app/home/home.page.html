@@ -1,32 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Crear cuenta</ion-title>
+    <ion-title>App cosas peridas | Crear cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
-    <input type="email" id="email" name="email" [(ngModel)]="emailInput"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      placeholder="Agrega correo" required #email="ngModel" />
-    <input type="password" id="password" name="password" [(ngModel)]="passwordInput"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      placeholder="Agrega contraseña" required #password="ngModel" />
-    <button type="submit"
-      class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-      [disabled]="registerForm.invalid">
-      crear cuenta aaaaaa
-    </button>
-
-
-    <button type="button"
-      class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Yellow</button>
-
-
-  </form>
-  <button (click)="onSignUp()" type="button"
-    class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-    Ir a inicio de sesion
-  </button>
-
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
+    <div class="form-wrapper">
+      <h1 class="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl">
+        Crea tu cuenta
+      </h1>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div>
+          <label for="email" class="block mb-2 text-sm font-medium text-white">Correo electrónico</label>
+          <input type="email" id="email" name="email" [(ngModel)]="emailInput"
+            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Agrega correo" required #email="ngModel" />
+        </div>
+        <div>
+          <label for="password" class="block mb-2 text-sm font-medium text-white">Contraseña</label>
+          <input type="password" id="password" name="password" [(ngModel)]="passwordInput"
+            class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Agrega contraseña" required #password="ngModel" />
+        </div>
+        <button type="submit"
+          class="w-full text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+          [disabled]="registerForm.invalid">
+          Crear cuenta
+        </button>
+        <button (click)="onSignUp()" type="button"
+          class="w-full text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+          Ir a inicio de sesión
+        </button>
+      </form>
+    </div>
+  </div>
 </ion-content>
