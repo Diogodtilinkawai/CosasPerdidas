@@ -5,7 +5,7 @@
   align-items: center;
   min-height: 100vh;
   padding: 2rem;
-  background-color: #1e1e2f;
+  background-color: #000000;
   color: #ffffff;
   text-align: center;
 }
@@ -68,8 +68,24 @@ button:hover {
 .form-wrapper {
   width: 100%;
   max-width: 400px;
-  background-color: #2a2a3b;
+  background-color: #2d2f4a;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:first-of-type {
+  background-color: #4ea1f3; /* azul claro */
+}
+
+button:first-of-type:hover {
+  background-color: #3a8dd8;
+}
+
+button:last-of-type {
+  background-color: #45c3d9; /* turquesa */
+}
+
+button:last-of-type:hover {
+  background-color: #35afc3;
 }
