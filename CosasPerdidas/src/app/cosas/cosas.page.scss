@@ -1,11 +1,367 @@
-.calificacion-baja {
-    color: red;
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #181820;
+  color: #e5e7eb;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
-.calificacion-media {
-    color: orange;
+/* Centra el contenido general */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2rem 0 2rem 0;
 }
 
-.calificacion-alta {
-    color: green;
+/* Formulario principal */
+.card-form {
+  background: #2a2a3b;
+  border-radius: 18px;
+  max-width: 930px;
+  width: 100%;
+  margin: 0 auto 2rem auto;
+  padding: 2.5rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-form h2 {
+  color: #5ee7ff;
+  font-size: 1.3rem;
+  margin-bottom: 1.6rem;
+}
+
+.card-form input[type="text"],
+.card-form input[type="file"],
+.card-form input,
+.card-form select {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+  border: 1.5px solid #393968;
+  background: #232343;
+  color: #fff;
+  margin-bottom: 1.1rem;
+  padding: 0 1rem;
+  font-size: 17px;
+  transition: border 0.2s;
+}
+
+.card-form input[type="text"]:focus,
+.card-form input[type="file"]:focus {
+  border: 1.8px solid #4ea1f3;
+  outline: none;
+}
+
+.card-form button,
+.card-form ion-button {
+  width: 100%;
+  height: 48px;
+  margin-top: 0.3rem;
+  border-radius: 14px;
+  background: #4ea1f3;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.card-form button:hover,
+.card-form ion-button:hover {
+  background: #82c8ff;
+  color: #000;
+}
+
+/* Vista previa imagen */
+.preview-image {
+  margin: 12px 0 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.preview-image img {
+  max-width: 140px;
+  max-height: 140px;
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(60,30,120,0.18);
+  object-fit: cover;
+  border: 2px solid #4ea1f3;
+}
+
+/* Barra de filtros y lista en un solo box */
+.filtro-busqueda-box {
+  background: #2a2a3b;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 930px;
+  margin: 0 auto 2.2rem auto;
+  padding: 2.5rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.3rem;
+}
+
+/* Filtros juntos y compactos */
+.filtro-bar {
+  display: flex;
+  gap: 1.3rem;
+  margin-bottom: 1.2rem;
+  justify-content: center;
+  width: 100%;
+  align-items: stretch; /* Fuerza el mismo alto para todos los hijos */
+}
+
+.filtro-bar input {
+  height: 56px;
+  min-width: 220px;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  padding: 0 1.3rem;
+  background: #232343;
+  border: 1px solid #393968;
+  color: #fff;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.filtro-bar button {
+  height: 56px;
+  min-width: 130px;
+  padding: 0 2.2rem;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  background: #4ea1f3;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  transition: background 0.18s, color 0.18s;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filtro-bar button:hover {
+  background: #82c8ff;
+  color: #000;
+}
+
+.filtro-busqueda-box h3 {
+  width: 100%;
+  text-align: left;
+  color: #5ee7ff;
+  font-size: 1.13rem;
+  margin-bottom: 1.1rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Tabla/lista de objetos */
+.cosas-lista {
+  width: 100%;
+  max-width: 930px;
+  background: #2a2a3b;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 2.5rem 2.4rem;
+}
+
+/* Cada objeto/card */
+.cosa-card {
+  background: #2a2a3b;
+  border-radius: 14px;
+  padding: 1.3rem 1.1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.1rem;
+  margin-bottom: 0.3rem;
+  border: 1.2px solid #0000;
+}
+
+.cosa-info {
+  flex: 2;
+  color: #e5e7eb;
+  font-size: 16.2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cosa-label {
+  font-weight: bold;
+  font-size: 17px;
+  color: #a78bfa;
+  margin-bottom: 0.2rem;
+}
+.cosa-value {
+  font-size: 15.2px;
+}
+
+/* Imagen en la lista */
+.cosa-img-box {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cosa-img-box img {
+  max-width: 65px;
+  max-height: 65px;
+  border-radius: 10px;
+  border: 1.2px solid #4ea1f3;
+  object-fit: cover;
+  box-shadow: 0 2px 7px rgba(70,70,140,0.15);
+}
+
+/* Botones de acciones */
+.cosa-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cosa-boton {
+  background: #4ea1f3;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.4rem 1.1rem;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.14s, color 0.14s;
+}
+.cosa-boton:hover {
+  background: #82c8ff;
+  color: #000;
+}
+
+/* Eliminados también respetan la paleta */
+.eliminados-box {
+  background: #2a2a3b;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 930px;
+  margin: 0 auto 2rem auto;
+  padding: 2.5rem 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+/* Cerrar sesión */
+.logout-btn {
+  margin-top: 2.2rem;
+  margin-bottom: 1rem;
+  align-self: center;
+  background: #4ea1f3;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 15.5px;
+  padding: 0.7rem 2.3rem;
+  transition: background 0.2s, color 0.2s;
+}
+.logout-btn:hover {
+  background: #82c8ff;
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #232343;
+}
+::-webkit-scrollbar-thumb {
+  background: #393968;
+  border-radius: 10px;
+}
+
+/* 1. General: todos los botones modernos y redondeados */
+button,
+.card-form button,
+.card-form ion-button,
+.filtro-bar button {
+  background: #4ea1f3;
+  color: #fff;
+  border: none;
+  border-radius: 14px;        /* Botones modernos y redondeados */
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.07rem;
+  min-height: 50px;
+  min-width: 120px;
+  padding: 0 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2. Hover universal */
+button:hover,
+.card-form button:hover,
+.card-form ion-button:hover,
+.filtro-bar button:hover {
+  background: #82c8ff;
+  color: #000;
+}
+
+/* 3. EXCEPCIÓN: Botones cuadrados (eliminar, editar, cerrar sesión) */
+.cosa-boton,
+.logout-btn {
+  border-radius: 6px !important;   /* Más cuadrados solo estos */
+  min-width: 80px;
+  min-height: 38px;
+  padding: 0.4rem 1.1rem;
+  font-size: 15px;
+  background: #2a2a3b;
+  color: #4ea1f3;
+  font-weight: 600;
+  border: none;
+  transition: background 0.14s, color 0.14s;
+}
+
+.cosa-boton:hover,
+.logout-btn:hover {
+  background: #393968;
+  color: #82c8ff;
+}
+
+/* 4. Ion-button Buscar, igual al resto pero más notorio */
+ion-button.buscar-btn {
+  --background: #4ea1f3;
+  --background-hover: #82c8ff;
+  --color: #fff;
+  --color-hover: #000;
+  --border-radius: 14px;
+  --padding-start: 2.2rem;
+  --padding-end: 2.2rem;
+  --box-shadow: none;
+  font-weight: bold;
+  font-size: 1.07rem;
+  min-width: 130px;
+  min-height: 50px;
+  text-transform: none;
+}
+
+ion-button.buscar-btn:hover,
+ion-button.buscar-btn.ion-focused,
+ion-button.buscar-btn:focus,
+ion-button.buscar-btn.button-solid.ion-activated {
+  --background: #82c8ff;
+  --color: #000;
 }
